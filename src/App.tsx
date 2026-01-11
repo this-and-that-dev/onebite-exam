@@ -5,12 +5,100 @@ import { Input } from "@/components/ui/input.tsx";
 import { Textarea } from "@/components/ui/textarea.tsx";
 import { Toaster } from "@/components/ui/sonner.tsx";
 import { toast } from "sonner";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel.tsx";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover.tsx";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog.tsx";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog.tsx";
+
+import { Amphora } from "lucide-react";
 
 function App() {
   const isActive = false;
 
   return (
     <div className="p-5">
+      <Amphora />
+      <AlertDialog>
+        <AlertDialogTrigger>Open Alert Dialog</AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogTitle>Title</AlertDialogTitle>
+          <AlertDialogDescription>
+            <div>body</div>
+            <div>
+              <AlertDialogCancel
+                onClick={() => {
+                  console.log("cancel");
+                }}
+              >
+                Cancel
+              </AlertDialogCancel>
+              <AlertDialogAction
+                onClick={() => {
+                  console.log("action");
+                }}
+              >
+                Action
+              </AlertDialogAction>
+            </div>
+          </AlertDialogDescription>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <Dialog>
+        <DialogTrigger>Open Dialog</DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Title</DialogTitle>
+            <DialogDescription>Description</DialogDescription>
+          </DialogHeader>
+          <div>Body</div>
+        </DialogContent>
+      </Dialog>
+
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button>Open</Button>
+        </PopoverTrigger>
+        <PopoverContent>Content!</PopoverContent>
+      </Popover>
+
+      <Carousel className="mx-10">
+        <CarouselContent>
+          <CarouselItem className="basis-1/3">1</CarouselItem>
+          <CarouselItem className="basis-1/3">2</CarouselItem>
+          <CarouselItem className="basis-1/3">3</CarouselItem>
+          <CarouselItem className="basis-1/3">4</CarouselItem>
+          <CarouselItem className="basis-1/3">5</CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+
       <Toaster />
       <Textarea />
 
@@ -36,13 +124,6 @@ function App() {
           "w-10 text-sm",
           isActive ? "text-green-500" : "text-red-500",
         )}
-      >
-        isActive
-      </div>
-      <div
-        className={
-          "w-10 text-sm " + (isActive ? "text-green-500" : "text-red-500")
-        }
       >
         isActive
       </div>
