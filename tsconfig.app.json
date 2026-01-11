@@ -17,11 +17,15 @@
 
     /* Linting */
     "strict": true,
-//    "noUnusedLocals": true, 사용하지 않는 지역변수 오류처리를 꺼준다.
-//    "noUnusedParameters": true, 사용하지 않는 매개변수는 오류처리인대 꺼준다.
+    //    "noUnusedLocals": true, 사용하지 않는 지역변수 오류처리를 꺼준다.
+    //    "noUnusedParameters": true, 사용하지 않는 매개변수는 오류처리인대 꺼준다.
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"] //경로 별칭 옵션
+    }
   },
   "include": ["src"]
 }
