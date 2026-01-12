@@ -1,18 +1,15 @@
 import TodoEditor from "@/components/todo-list/todo-editor.tsx";
 import TodoItem from "@/components/todo-list/todo-item.tsx";
-
-const dummyTodos = [
-  { id: 1, content: "Todo 1" },
-  { id: 2, content: "Todo 2" },
-  { id: 3, content: "Todo 3" },
-];
+import { useTodos } from "@/store/todos.ts";
 
 export default function TodoListPage() {
+  const todos = useTodos();
+
   return (
     <div className="flex flex-col gap-5 p-5">
       <h1 className="text-2xl font-bold">TodoList</h1>
       <TodoEditor />
-      {dummyTodos.map((todo) => {
+      {todos.map((todo) => {
         return <TodoItem key={todo.id} id={todo.id} content={todo.content} />;
       })}
     </div>
