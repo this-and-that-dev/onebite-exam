@@ -5,8 +5,8 @@ export function useTodoDataById(id: number) {
   return useQuery({
     queryFn: () => fetchTodoById(id),
     queryKey: ["todos", id],
-    staleTime: 5000, //5초
-
+    staleTime: 5000, //5초 , data가 fresh 상태 일 때만 적용된다.
+    gcTime: 5000,
     // refetchOnMount: false,
     // refetchOnWindowFocus: false,
     // refetchOnReconnect: false,
