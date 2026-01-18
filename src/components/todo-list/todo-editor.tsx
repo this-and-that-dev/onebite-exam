@@ -1,10 +1,10 @@
 import { Input } from "@/components/ui/input.tsx";
 import { Button } from "@/components/ui/button.tsx";
-import { useCreateTodo } from "@/store/todos.ts";
 import { useState } from "react";
+import { useCreateTodoMutation } from "@/hooks/mutations/use-create-todo-mutation.ts";
 
 export default function TodoEditor() {
-  const createTodo = useCreateTodo();
+  const { mutate, isPending } = useCreateTodoMutation();
   const [content, setContent] = useState("");
 
   return (
@@ -17,10 +17,10 @@ export default function TodoEditor() {
         }}
       />
       <Button
+        disabled={isPending}
         onClick={() => {
           if (content.trim() === "") return;
-
-          createTodo(content);
+          mutate(content);
           setContent("");
         }}
       >
