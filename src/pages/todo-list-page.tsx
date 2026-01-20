@@ -18,7 +18,7 @@ export default function TodoListPage() {
       <h1 className="text-2xl font-bold">TodoList</h1>
       <TodoEditor />
       {todos?.map((todo) => {
-        return <TodoItem key={todo.id} id={todo.id} content={todo.content} />;
+        return <TodoItem key={todo.id} {...todo} />;
       })}
     </div>
   );
