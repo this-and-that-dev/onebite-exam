@@ -16,10 +16,18 @@ export function useCreateTodoMutation() {
     //매개변수로 createTodo 의 반환값이 들어온다.
     onSuccess: async (newTodo) => {
       //prevTodos 는 키값에 저장된 데이터가 들어있다.
-      queryClient.setQueryData<Todo[]>(QUERY_KEYS.todo.list, (prevTodos) => {
-        if (!prevTodos) return [newTodo];
-        return [...prevTodos, newTodo];
-      });
+      queryClient.setQueryData<string[]>(
+        QUERY_KEYS.todo.list,
+        (prevTodoIds) => {
+          if (!prevTodoIds) return [newTodo.id];
+          return [...prevTodoIds, newTodo.id];
+        },
+      );
+
+      queryClient.setQueryData<Todo>(
+        QUERY_KEYS.todo.detail(newTodo.id),
+        newTodo,
+      );
 
       //캐시 무효화
       // await queryClient.invalidateQueries({

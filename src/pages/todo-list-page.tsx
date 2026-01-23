@@ -3,8 +3,7 @@ import TodoItem from "@/components/todo-list/todo-item.tsx";
 import { useTodosData } from "@/hooks/queries/use-todos-data.ts";
 
 export default function TodoListPage() {
-  const { data: todos, isLoading, error } = useTodosData();
-
+  const { data: todoIds, isLoading, error } = useTodosData();
   if (error) {
     return <div>오류가 발생했습니다.</div>;
   }
@@ -17,8 +16,12 @@ export default function TodoListPage() {
     <div className="flex flex-col gap-5 p-5">
       <h1 className="text-2xl font-bold">TodoList</h1>
       <TodoEditor />
-      {todos?.map((todo) => {
-        return <TodoItem key={todo.id} {...todo} />;
+      {todoIds?.map((id) => {
+        if (id) {
+          return <TodoItem key={id} id={id} />;
+        } else {
+          return null;
+        }
       })}
     </div>
   );

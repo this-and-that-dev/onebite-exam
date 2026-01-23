@@ -17,12 +17,15 @@ export default function useDeleteTodoMutation() {
     //   });
     // },
     onSuccess: (deletedTodo) => {
-      queryClient.setQueryData<Todo[]>(QUERY_KEYS.todo.list, (prevTodos) => {
-        if (!prevTodos) return [];
-        return prevTodos.filter((prevTodo) => {
-          return prevTodo.id !== deletedTodo.id;
+      queryClient.setQueryData<string[]>(QUERY_KEYS.todo.list, (prevTodoId) => {
+        if (!prevTodoId) return [];
+        return prevTodoId.filter((prevTodo) => {
+          return prevTodo !== deletedTodo.id;
         });
       });
+      // queryClient.removeQueries({
+      //   queryKey: QUERY_KEYS.todo.detail(deletedTodo.id),
+      // });
     },
   });
 }
